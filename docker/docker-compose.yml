@@ -13,6 +13,7 @@ services:
       - "2222:22"
       - "8080:80"
       - "8043:443"
+      - "12345:12345" # SSH alternative port after security hardening
     volumes:
       - ../logs:/var/log/app
       - ../logs/.bash_history:/root/.bash_history
