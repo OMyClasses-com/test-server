@@ -37,5 +37,5 @@ RUN echo 'root:rootpassword' | chpasswd
 # Expose SSH port
 EXPOSE 22
 
-# Start SSH service
-CMD ["/usr/sbin/sshd", "-D"]
+# Start SSH service in background and keep container running
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd && sleep infinity"]
