@@ -1,3 +1,5 @@
+name: debian-test-server
+
 services:
   debian-server:
     privileged: true
