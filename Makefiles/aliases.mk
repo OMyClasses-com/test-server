@@ -39,6 +39,10 @@ restart:
 status:
 	make server-status
 
+# List processes in the server container
+processes:
+	make server-processes
+
 # Get shell access
 shell:
 	make server-shell

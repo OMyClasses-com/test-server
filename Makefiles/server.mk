@@ -79,3 +79,7 @@ server-ssh:
 	@echo "Connecting via SSH..."
 	@echo "Password: rootpassword"
 	ssh root@localhost -p $(SSH_PORT)
+
+server-processes:
+	@echo "Listing processes in the SSH server container..."
+	docker-compose -f $(COMPOSE_FILE) exec debian-server ps aux | grep -v defunct
