@@ -2,3 +2,5 @@
 .env
 logs/*
 !logs/.gitkeep
+home/
+!home/.gitkeep
