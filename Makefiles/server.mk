@@ -60,8 +60,7 @@ server-clean:
 
 # Status check
 server-status:
-	@echo "SSH Server Status:"
-	docker-compose -f $(COMPOSE_FILE) ps
+	docker-compose -f $(COMPOSE_FILE) ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}"
 
 # Prepare necessary files
 server-prepare:
