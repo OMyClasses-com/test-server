@@ -43,7 +43,6 @@ server-build:
 	@echo "Building Debian SSH server image..."
 	docker-compose -f $(COMPOSE_FILE) build --no-cache
 
-
 # Rebuild the SSH server image from scratch
 server-rebuild:
 	@echo "Rebuilding Debian SSH server image from scratch..."
@@ -54,6 +53,7 @@ server-rebuild:
 
 # Clean up everything
 server-clean:
+	make server-ssh-keys-clean
 	@echo "Cleaning up SSH server resources..."
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all
 	@echo "Cleanup completed"
@@ -65,7 +65,10 @@ server-status:
 # Prepare necessary files
 server-prepare:
 	@mkdir -p logs
+	@touch logs/.keep
 	@touch logs/.bash_history
+	@mkdir -p home
+	@touch home/.gitkeep
 	@echo "Preparation completed. Logs directory and files are ready."
 
 # Get shell access to the running container
@@ -73,12 +76,19 @@ server-shell:
 	@echo "Connecting to SSH server container..."
 	docker-compose -f $(COMPOSE_FILE) exec debian-server /bin/bash
 
+# Clean old SSH host keys from known_hosts
+server-ssh-keys-clean:
+	@echo "Removing old SSH host keys for localhost:$(SSH_PORT)..."
+	ssh-keygen -R "[localhost]:$(SSH_PORT)"
+	@echo "SSH host keys cleaned. You can now connect without host key warnings."
+
 # Connect via SSH
 server-ssh:
 	@echo "Connecting via SSH..."
 	@echo "Password: rootpassword"
 	ssh root@localhost -p $(SSH_PORT)
 
+# List processes in the SSH server container
 server-processes:
 	@echo "Listing processes in the SSH server container..."
 	docker-compose -f $(COMPOSE_FILE) exec debian-server ps aux | grep -v defunct
