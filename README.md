@@ -17,6 +17,12 @@ The server is a minimal Debian SSH server with the following packages installed:
 - curl: command line tool for transferring data with URLs
 - wget: utility for non-interactive download of files from web
 
+## HOW TO USE
+
+1. `git clone https://github.com/OMyClasses-com/test-server.git`
+2. `cd test-server`
+3. `make up`
+
 ### License
 
 MIT License.
