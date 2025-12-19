@@ -67,8 +67,10 @@ server-prepare:
 	@mkdir -p logs
 	@touch logs/.keep
 	@touch logs/.bash_history
-	@mkdir -p home
-	@touch home/.gitkeep
+	@rm -rf ./home/rails
+	@mkdir -p ./home/rails
+	@touch ./home/.gitkeep
+	@touch ./home/rails/.gitkeep
 	@echo "Preparation completed. Logs directory and files are ready."
 
 # Get shell access to the running container

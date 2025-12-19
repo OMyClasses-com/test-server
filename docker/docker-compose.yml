@@ -14,7 +14,7 @@ services:
     ports:
       - "2222:22"
       - "8080:80"
-      - "8043:443"
+      - "8443:443"
       - "12345:12345" # SSH alternative port after security hardening
     volumes:
       - ../logs:/var/log/app
