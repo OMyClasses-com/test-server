@@ -17,10 +17,10 @@ services:
       - "8443:443"
       - "12345:12345" # SSH alternative port after security hardening
     volumes:
+      - ../home/:/home
       - ../logs:/var/log/app
       - ../logs/.bash_history:/root/.bash_history
       - docker-data:/var/lib/docker
-      - ../home/:/home
 
 # To resole a file system limitation issue with Docker in Docker
 volumes:
